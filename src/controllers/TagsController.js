@@ -22,6 +22,11 @@ class TagsController {
         } catch (error) {
             return response.status(400).json({ error: error.message });
         }
+
+        // EX do bady:
+        // {
+        //     "name": "CSS"
+        // }
     }
 }
 

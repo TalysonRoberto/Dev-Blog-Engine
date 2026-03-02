@@ -4,7 +4,10 @@ const RotasPrivadas = express.Router();
 
 // Importe as rotas que você quer proteger
 const TagsRotas = require('./TagsRotas');
-// const UsuariosRotas = require('./UsuarioRotas');
+const UserRotas = require('./UserRotas');
+const PostRotas = require('./PostRotas');
+const CommentsRotas = require('./CommentsRotas');
+// ---------- ADD NEW --------------
 
 // MIDDLEWARE DE AUTENTICAÇÃO
 RotasPrivadas.use((request, response, next) => {
@@ -36,6 +39,10 @@ RotasPrivadas.use((request, response, next) => {
 
 // 4. Todas as rotas abaixo deste middleware agora são PRIVADAS
 RotasPrivadas.use(TagsRotas);
-// RotasPrivadas.use(UsuariosRotas);
+RotasPrivadas.use(UserRotas);
+RotasPrivadas.use(PostRotas);
+RotasPrivadas.use(CommentsRotas);
+// ---------- ADD NEW --------------
+
 
 module.exports = RotasPrivadas;
