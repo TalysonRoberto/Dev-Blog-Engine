@@ -1,3 +1,4 @@
+const MD5 = require('crypto-js/md5')
 const UserModel = require('../models/UserModel');
 const ProfileModel = require('../models/ProfileModel');
 
@@ -52,6 +53,8 @@ class UserController {
         try {
             // Ja esta sendo refernciado do inicio UserModel.hasOne(ProfileModel,{foreignKey: "user_id"}); // Informa que o usuário tem um perfil
             const body = request.body;                              // busca o body passado
+            const password = MD5(String(body.password)).toString();; // pegando o passeord do body e criptografando
+            body.password = password; // passando o password criptografado de volta para o body
             UserModel.create(body, {include: ProfileModel});        // Cria passando o body e incluindo o ProfileModel
             return response.status(201).json({
                 message: "Usuario cadastrado com sucesso!",
